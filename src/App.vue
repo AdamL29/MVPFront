@@ -10,7 +10,7 @@
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="../media/DALL·E 2023-03-07 20.41.54 - cartoon map.png"
           transition="scale-transition"
           width="40"
         />
@@ -53,3 +53,7 @@ export default {
   }),
 };
 </script>
+
+<style lang="scss" scoped>
+
+</style>
