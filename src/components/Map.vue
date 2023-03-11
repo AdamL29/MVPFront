@@ -9,12 +9,13 @@
 <script>
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+
     export default {
         name: 'MapTile',
         data() {
             return {
                 center: [51.044, -114.071],
-                mapDiv: null
+                mapDiv: null,
             }
         },
         methods: {
@@ -33,7 +34,7 @@ import L from "leaflet";
                 L.marker(
                     [51.044, -114.071]
                 ).addTo(this.mapDiv).bindPopup('Test Pin').openPopup();
-            }
+            },
         },
         mounted () {
             this.setupLeafletMap();

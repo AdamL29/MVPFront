@@ -1,16 +1,16 @@
 <template>
   <v-container>
     <h1>Welcome</h1>
-    <MapTile/>
+    <MapTest2/>
   </v-container>
 </template>
 
 <script>
-import MapTile from "../components/Map.vue";
+import MapTest2 from "../components/MapTest2.vue";
   export default {
     name: 'HomePage',
     components: {
-      MapTile,
+      MapTest2,
     },
   }
 </script>
