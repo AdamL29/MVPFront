@@ -1,16 +1,16 @@
 <template>
   <v-container>
     <h1>Welcome</h1>
-    <MapTest2/>
+    <MapTest3/>
   </v-container>
 </template>
 
 <script>
-import MapTest2 from "../components/MapTest2.vue";
+import MapTest3 from "../components/VueLeaflet.vue";
   export default {
     name: 'HomePage',
     components: {
-      MapTest2,
+      MapTest3,
     },
   }
 </script>
