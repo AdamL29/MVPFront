@@ -1,14 +1,15 @@
 <template>
 
-<div style="height: 800px; width: 100%">
-    <div style="height: 200px; overflow: auto;">
-        <p>First marker is placed at {{ withPopup.lat }}, {{ withPopup.lng }}</p>
+<div style="height: 600px; width: 100%">
+    <div style="height: 100px; overflow: auto;">
+        <!-- <p>First marker is placed at {{ withPopup.lat }}, {{ withPopup.lng }}</p>
         <p>Center is at {{ currentCenter }} and the zoom is: {{ currentZoom }}</p>
         <button @click="showLongText">
             Toggle long popup
-        </button>
+        </button> -->
     </div>
     <l-map
+        class="map"
         v-if="showMap"
         :zoom="zoom"
         :center="center"
@@ -69,7 +70,7 @@ export default {
     },
     data() {
     return {
-        zoom: 10,
+        zoom: 11,
         center: latLng(51.044, -114.071),
         url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         attribution:
@@ -105,3 +106,13 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.map{
+    display: grid;
+    // width: 30vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+</style>
