@@ -65,7 +65,7 @@ Icon.Default.mergeOptions({
 });
 
 export default {
-    name: "MapTest3",
+    name: "MapPage",
     components: {
     LMap,
     LTileLayer,
