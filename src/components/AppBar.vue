@@ -13,6 +13,17 @@
     <!-- Below will refresh home page or send client back to home page. -->
             <span class="mr-2">Home</span>
         </v-btn>
+        <v-btn 
+            class="profile"
+            href="http://192.168.1.71:8080/#/"
+            target="_blank"
+            text
+        >
+            <span class="mr-2">My Profile</span>
+        </v-btn>
+        <span>
+            <p onload="currentDate" id="date"></p>
+        </span>
         <div class="d-flex align-center">
             <v-img
             alt="Logo"
@@ -58,6 +69,9 @@ export default {
     methods: {
         reloadPage() {
             window.location.reload()
+        },
+        currentDate(){
+            document.getElementsById("date").innerHTML = Date();
         }
     },
 }
@@ -69,5 +83,15 @@ export default {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+.profile{
+    position: absolute;
+    left: 25%;
+    transform: translateX(-25%);
+}
+.date{
+    position: absolute;
+    left: 40%;
+    transform: translateX(-40%);
 }
 </style>

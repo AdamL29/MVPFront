@@ -8,42 +8,46 @@
             Toggle long popup
         </button> -->
     </div>
-    <l-map
-        class="map"
-        v-if="showMap"
-        :zoom="zoom"
-        :center="center"
-        :options="mapOptions"
-        style="height: 80%"
-        @click="customMarker"
-        @update:center="centerUpdate"
-        @update:zoom="zoomUpdate"
-    >
-        <l-tile-layer
-        :url="url"
-        :attribution="attribution"
-        />
-        <l-marker :lat-lng="withPopup">
-            <l-popup>
-                <div @click="innerClick">
-                I am a popup ADAM!
-                    <p v-show="showParagraph">
-                        You made this view happen.
-                    </p>
-                </div>
-            </l-popup>
-        </l-marker>
-        <l-marker :lat-lng="withTooltip">
-            <l-tooltip :options="{ permanent: true, interactive: true }">
-                <div @click="innerClick">
-                I am a tooltip ADAM!
-                    <p v-show="showParagraph">
-                        Did this work for you?.
-                    </p>
-                </div>
-            </l-tooltip>
-        </l-marker>
-    </l-map>
+    <div id="map">
+        <l-map
+            ref="myMap"
+            @ready="doSomethingOnReady"
+            class="map"
+            v-if="showMap"
+            :zoom="zoom"
+            :center="center"
+            :options="mapOptions"
+            style="height: 80%"
+            @click="customMarker"
+            @update:center="centerUpdate"
+            @update:zoom="zoomUpdate"
+        >
+            <l-tile-layer
+            :url="url"
+            :attribution="attribution"
+            />
+            <l-marker :lat-lng="withPopup">
+                <l-popup>
+                    <div @click="innerClick">
+                    I am a popup ADAM!
+                        <p v-show="showParagraph">
+                            You made this view happen.
+                        </p>
+                    </div>
+                </l-popup>
+            </l-marker>
+            <l-marker :lat-lng="withTooltip">
+                <l-tooltip :options="{ permanent: true, interactive: true }">
+                    <div @click="innerClick">
+                    I am a tooltip ADAM!
+                        <p v-show="showParagraph">
+                            Did this work for you?.
+                        </p>
+                    </div>
+                </l-tooltip>
+            </l-marker>
+        </l-map>
+    </div>
 </div>
 </template>
     
@@ -51,6 +55,7 @@
 import { latLng } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPopup, LTooltip } from "vue2-leaflet";
 import {Icon} from 'leaflet';
+import L from 'leaflet';
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
@@ -68,25 +73,35 @@ export default {
     LPopup,
     LTooltip
     },
+    props: [
+        'socket',
+    ],
     data() {
     return {
-        zoom: 11,
-        center: latLng(51.044, -114.071),
-        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        withPopup: latLng(51.088, -114.071),
-        withTooltip: latLng(51.044, -114.200),
-        currentZoom: 11.5,
-        currentCenter: latLng(51.044, -114.071),
-        showParagraph: false,
-        mapOptions: {
-            zoomSnap: 0.5
-        },
-        showMap: true
-    };
+            zoom: 11,
+            center: latLng(51.044, -114.071),
+            url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            attribution:
+            '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+            withPopup: latLng(51.088, -114.071),
+            withTooltip: latLng(51.044, -114.200),
+            currentZoom: 11.5,
+            currentCenter: latLng(51.044, -114.071),
+            showParagraph: false,
+            mapOptions: {
+                zoomSnap: 0.5
+            },
+            showMap: true,
+            map: null,
+            layer: null,
+        };
     },
     methods: {
+        doSomethingOnReady(){
+            this.map = this.$refs.myMap.mapObject
+            this.layer = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+            this.map.addLayer(this.layer);
+        },
         zoomUpdate(zoom) {
             this.currentZoom = zoom;
         },
@@ -102,9 +117,21 @@ export default {
         customMarker(item) {
             const {latlng}=item;
             console.log("Here",latlng)
+            this.clickMarker(latlng)
         },
+        clickMarker(e){
+            L.marker(e, {draggable:true}).addTo(this.map);
+        },
+    mounted () {
+        this.doSomethingOnReady();
+        this.clickMarker();
+        this.$nextTick(() => {
+            this.map.ANY_LEAFLET_MAP_METHOD();
+        });
+    },
     }
-};
+}
+
 </script>
 
 <style lang="scss" scoped>
