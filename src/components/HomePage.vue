@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 id="welcome" >Welcome To Seek-N-Peek</h1>
+    <h1 class="welcome" >Welcome To Seek-N-Peek</h1>
     <MapPage/>
   </v-container>
 </template>
@@ -16,7 +16,7 @@ import MapPage from "../components/VueLeaflet.vue";
 </script>
 
 <style lang="scss" scoped>
-#welcome{
+.welcome{
   display: grid;
   position: absolute;
   left: 50%;
