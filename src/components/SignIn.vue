@@ -26,7 +26,9 @@ import router from '@/router';
         data() {
             return {
                 apiKey: process.env.VUE_APP_API_KEY,
-                apiUrl: process.env.VUE_APP_API_URL,
+                // Am I looking for Key or Token?
+                token: "user_token",
+                // apiUrl: process.env.VUE_APP_API_URL,
                 userEmail: "",
                 password: "",
             }
@@ -37,7 +39,7 @@ import router from '@/router';
                     url: 'https://seeknpeek.adamdom.ca/sign-in',
                     method: "POST",
                     headers: {
-                        "x-api-key": this.apiKey,
+                        "x-api-key": this.token,
                     },
                     data: {
                         email: this.userEmail,
@@ -46,7 +48,7 @@ import router from '@/router';
                 }).then((response)=>{
                     cookies.set('token', response.data.token);
                     cookies.set('clientId', response.data.clientId);
-                    router.push('/explore');
+                    router.push('/');
                 }).catch((error)=>{
                     console.log(error);
                 })

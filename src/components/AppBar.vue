@@ -6,17 +6,14 @@
         dark
         >
         <v-btn @click="reloadPage"
-            href="http://192.168.1.71:8080/#/"
-            target="_blank"
-            text
-        >
+            text>
     <!-- Below will refresh home page or send client back to home page. -->
             <span class="mr-2">Home</span>
         </v-btn>
         <v-btn 
             class="profile"
-            href="http://192.168.1.71:8080/#/"
-            target="_blank"
+            href="http://192.168.1.71:8080/#/profile"
+            target="_self"
             text
         >
             <span class="mr-2">My Profile</span>
@@ -40,8 +37,8 @@
         <v-spacer></v-spacer>
 
         <v-btn
-            href="https://github.com/vuetifyjs/vuetify/releases/latest"
-            target="_blank"
+            href="http://192.168.1.71:8080/#/sign-up"
+            target="_self"
             text
         >
             <span class="mr-2">Sign-up</span>
@@ -49,8 +46,8 @@
     <!-- Above sends to sign-up page -->
     <!-- Below sends to login Page -->
         <v-btn
-            href="https://github.com/vuetifyjs/vuetify/releases/latest"
-            target="_blank"
+            href="http://192.168.1.71:8080/#/sign-in"
+            target="_self"
             text
         >
             <span class="mr-2">Login</span>
@@ -64,10 +61,12 @@
 </template>
 
 <script>
+import router from '@/router';
 export default {
     name: "AppBar",
     methods: {
         reloadPage() {
+            router.push('/')
             window.location.reload()
         },
         currentDate(){

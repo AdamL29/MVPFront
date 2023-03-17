@@ -21,7 +21,7 @@
                 <v-text-field
                 v-model="userName"
                 />
-            <v-btn @click="registerCall">
+            <v-btn @click="signUpCall">
             Create Account
             </v-btn>
     </v-container>
@@ -38,6 +38,7 @@ import router from '@/router';
         data() {
             return {
                 apiKey: process.env.VUE_APP_API_KEY,
+                // Am I looking for Key or Token?
                 apiUrl: process.env.VUE_APP_API_URL,
                 email: "",
                 password: "",
@@ -46,7 +47,7 @@ import router from '@/router';
             }
         },
         methods: {
-            registerCall(){
+            signUpCall(){
                 axios.request({
                     url: 'https://seeknpeek.adamdom.ca/sign-up',
                     method: "POST",

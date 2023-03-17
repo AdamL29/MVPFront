@@ -36,16 +36,6 @@
                     </div>
                 </l-popup>
             </l-marker>
-            <l-marker :lat-lng="withTooltip">
-                <l-tooltip :options="{ permanent: true, interactive: true }">
-                    <div @click="innerClick">
-                    I am a tooltip ADAM!
-                        <p v-show="showParagraph">
-                            Did this work for you?.
-                        </p>
-                    </div>
-                </l-tooltip>
-            </l-marker>
         </l-map>
     </div>
 </div>
@@ -53,7 +43,7 @@
     
 <script>
 import { latLng } from "leaflet";
-import { LMap, LTileLayer, LMarker, LPopup, LTooltip } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 import {Icon} from 'leaflet';
 import L from 'leaflet';
 
@@ -71,7 +61,6 @@ export default {
     LTileLayer,
     LMarker,
     LPopup,
-    LTooltip
     },
     props: [
         'socket',
@@ -84,7 +73,6 @@ export default {
             attribution:
             '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
             withPopup: latLng(51.088, -114.071),
-            withTooltip: latLng(51.044, -114.200),
             currentZoom: 11.5,
             currentCenter: latLng(51.044, -114.071),
             showParagraph: false,
@@ -112,7 +100,7 @@ export default {
             this.showParagraph = !this.showParagraph;
         },
         innerClick() {
-            alert("Click!");
+            alert("Pin Page to Open on Click!");
         },
         customMarker(item) {
             const {latlng}=item;
