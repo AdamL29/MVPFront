@@ -6,7 +6,7 @@
 import ProfilePage from '../components/ProfilePage';
 
 export default {
-    name: 'Profile',
+    name: 'ProfileView',
 
     components: {
         ProfilePage,
