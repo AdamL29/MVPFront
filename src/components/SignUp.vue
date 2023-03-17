@@ -1,49 +1,64 @@
 <template>
     <v-container>
         <h1>Create an Account</h1>
-            <h3>User Email:</h3>
+            <h3>Username:</h3>
                 <v-text-field
-                v-model="email"
+                v-model="userName"
                 />
-            <h3>User Password:</h3>
+            <h3>Password:</h3>
                 <v-text-field
                 v-model="password"
+                />
+            <h3>Email:</h3>
+                <v-text-field
+                v-model="email"
                 />
             <h3>First Name:</h3>
                 <v-text-field
                 v-model="firstName"
                 />
-            <h3>Last Name:</h3>
+            <h3>City:</h3>
                 <v-text-field
-                v-model="lastName"
+                v-model="city"
                 />
-            <h3>Username:</h3>
+            <h3>Bio:</h3>
                 <v-text-field
-                v-model="userName"
+                v-model="bio"
+                />
+            <h3>Profile Img URL:</h3>
+                <v-text-field
+                v-model="profileImg"
                 />
             <v-btn @click="signUpCall">
             Create Account
             </v-btn>
+            <FooterBar/>
     </v-container>
 </template>
 
 <script>
+import FooterBar from "../components/FooterBar.vue";
 import axios from "axios";
 import cookies from "vue-cookies"
 import router from '@/router';
 
     export default {
         name: "SignUp",
-        
+        components: {
+            FooterBar
+    },
         data() {
             return {
                 apiKey: process.env.VUE_APP_API_KEY,
                 // Am I looking for Key or Token?
-                apiUrl: process.env.VUE_APP_API_URL,
-                email: "",
-                password: "",
-                firstName: "",
+                token: "",
                 userName: "",
+                password: "",
+                email: "",
+                firstName: "",
+                city: "",
+                bio: "",
+                profileImg: "",
             }
         },
         methods: {
@@ -52,13 +67,16 @@ import router from '@/router';
                     url: 'https://seeknpeek.adamdom.ca/sign-up',
                     method: "POST",
                     headers: {
-                        "x-api-key": this.apiKey,
+                        "token": this.token,
                     },
                     data: {
                         email: this.email,
                         password: this.password,
                         firstName: this.firstName,
                         username: this.userName,
+                        city: this.city,
+                        bio: this.bio,
+                        profileImg: this.profileImg,
                     }
                 }).then((response)=>{
                     cookies.set('token', response.data.token);

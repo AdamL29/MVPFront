@@ -12,17 +12,21 @@
         <v-btn @click="signIn">
         Sign In
         </v-btn>
+        <FooterBar/>
     </v-container>
 </template>
 
 <script>
+import FooterBar from "../components/FooterBar.vue";
 import axios from "axios";
 import cookies from "vue-cookies";
 import router from '@/router';
 
     export default {
         name: "SignIn",
-        
+        components: {
+            FooterBar
+    },
         data() {
             return {
                 apiKey: process.env.VUE_APP_API_KEY,
