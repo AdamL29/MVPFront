@@ -28,7 +28,7 @@
             />
             <l-marker :lat-lng="withPopup">
                 <l-popup>
-                    <div @click="innerClick">
+                    <div @mouseover="innerClick">
                     I am a popup ADAM!
                         <p v-show="showParagraph">
                             You made this view happen.
@@ -39,6 +39,7 @@
         </l-map>
     </div>
 </div>
+
 </template>
     
 <script>
@@ -106,9 +107,13 @@ export default {
             const {latlng}=item;
             console.log("Here",latlng)
             this.clickMarker(latlng)
+            // var popup = L.popup()
+            //     .setLatLng(latlng)
+            //     .setContent('<p>Hello world!<br />This is a nice popup.</p>')
+            //     .openOn(this.myMap);
         },
         clickMarker(e){
-            L.marker(e, {draggable:true}).addTo(this.map);
+            L.marker(e, {clickable:true}).addTo(this.map);
         },
     mounted () {
         this.doSomethingOnReady();

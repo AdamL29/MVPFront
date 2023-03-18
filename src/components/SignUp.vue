@@ -49,8 +49,6 @@ import router from '@/router';
     },
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
-                // Am I looking for Key or Token?
                 token: "",
                 userName: "",
                 password: "",
