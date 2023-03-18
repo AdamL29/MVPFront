@@ -68,9 +68,6 @@ export default {
             router.push('/')
             window.location.reload()
         },
-        currentDate(){
-            document.getElementsById("date").innerHTML = Date();
-        }
     },
 }
 </script>
