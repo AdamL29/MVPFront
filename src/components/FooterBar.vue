@@ -2,7 +2,7 @@
     <v-container>
         <footer>
             <v-btn
-            href="http://192.168.1.71:8080/#/support"
+            @click="support"
             target="_self"
             text
             >
@@ -13,8 +13,15 @@
 </template>
 
 <script>
+import router from '@/router';
+
 export default {
     name: 'FooterBar',
+    methods: {
+        support() {
+            router.push('/support')
+        }
+    },
 }
 </script>
 

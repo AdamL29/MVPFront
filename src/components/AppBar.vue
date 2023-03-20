@@ -12,7 +12,7 @@
         </v-btn>
         <v-btn 
             class="profile"
-            href="http://192.168.1.71:8080/#/profile"
+            @click="myProfile"
             target="_self"
             text
         >
@@ -37,7 +37,7 @@
         <v-spacer></v-spacer>
 
         <v-btn
-            href="http://192.168.1.71:8080/#/sign-up"
+            @click="signUp"
             target="_self"
             text
         >
@@ -46,7 +46,7 @@
     <!-- Above sends to sign-up page -->
     <!-- Below sends to login Page -->
         <v-btn
-            href="http://192.168.1.71:8080/#/sign-in"
+            @click="signIn"
             target="_self"
             text
         >
@@ -68,6 +68,15 @@ export default {
             router.push('/')
             window.location.reload()
         },
+        myProfile() {
+            router.push('/profile')
+        },
+        signUp() {
+            router.push('/sign-up')
+        },
+        signIn() {
+            router.push('/sign-in')
+        }
     },
 }
 </script>
