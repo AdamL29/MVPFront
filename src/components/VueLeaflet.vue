@@ -103,17 +103,13 @@ export default {
         innerClick() {
             alert("Pin Page to Open on Click!");
         },
-        customMarker(item) {
+        customMarker(item, message) {
             const {latlng}=item;
             console.log("Here",latlng)
-            this.clickMarker(latlng)
-            // var popup = L.popup()
-            //     .setLatLng(latlng)
-            //     .setContent('<p>Hello world!<br />This is a nice popup.</p>')
-            //     .openOn(this.myMap);
+            this.clickMarker(latlng, message)
         },
-        clickMarker(e){
-            L.marker(e, {clickable:true}).addTo(this.map);
+        clickMarker(e, message){
+            L.marker(e, {clickable:true}).addTo(this.map).bindPopup(message);
         },
     mounted () {
         this.doSomethingOnReady();

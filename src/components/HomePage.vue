@@ -11,8 +11,7 @@
 import MapPage from "../components/VueLeaflet.vue";
 import FooterBar from "../components/FooterBar.vue";
 import axios from "axios";
-import cookies from "vue-cookies"
-import router from '@/router';
+// import router from '@/router';
 
   export default {
     name: 'HomePage',
@@ -20,7 +19,13 @@ import router from '@/router';
       MapPage,
       FooterBar
     },
-    methods: {
+    data() {
+      return {
+        apiUrl : process.env.VUE_APP_API_URL,
+        pins : [],
+      }
+    },
+      methods: {
             getPins(){
                 axios.request({
                     url: 'http://127.0.0.1:5000/api/pins',
@@ -33,15 +38,16 @@ import router from '@/router';
                         resource: this.resource,
                     }
                 }).then((response)=>{
-                    cookies.set('token', response.data.token);
-                    cookies.set('clientId', response.data.clientId);
-                    console.log(this.apiKey);
-                    router.push('/sign-in');
+                    console.log(response)
+                    this.pins = response.data;
                 }).catch((error)=>{
                     console.log(error);
                 })
             }
         },
+      mounted () {
+        this.getPins();
+      },
   }
 </script>
 
