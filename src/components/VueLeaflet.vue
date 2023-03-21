@@ -80,6 +80,8 @@ export default {
             showMap: true,
             map: null,
             layer: null,
+            marker: [],
+            message: "Hello"
         };
     },
     methods: {
@@ -106,13 +108,14 @@ export default {
             this.clickMarker(latlng, message)
         },
         clickMarker(e, message){
-            L.marker(e, {clickable:true}).addTo(this.map).bindPopup(message);
+            L.marker(e, {draggable:true}).addTo(this.map).bindPopup(message);
         },
     mounted () {
         this.doSomethingOnReady();
         this.clickMarker();
         this.$nextTick(() => {
             this.map.ANY_LEAFLET_MAP_METHOD();
+        // this.$on
         });
     },
     }

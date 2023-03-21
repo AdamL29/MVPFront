@@ -42,7 +42,11 @@ import axios from "axios";
                     }
                 }).then((response)=>{
                     console.log(response.data)
-                    this.pins = response.data;
+                    // Const?
+                    const info = response.data;
+                    this.pins = info;
+                    // emit?
+                    // this.$root.$emit('data', response.data)
                 }).catch((error)=>{
                     console.log(error);
                 })
