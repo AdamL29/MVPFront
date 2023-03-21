@@ -63,9 +63,6 @@ export default {
     LMarker,
     LPopup,
     },
-    props: [
-        'socket',
-    ],
     data() {
     return {
             zoom: 11,

@@ -2,6 +2,9 @@
   <v-container>
     <h1 class="welcome" >Welcome To Seek-N-Peek</h1>
     <MapPage/>
+    <div v-for="pin in pins" :key="pin.title">
+      {{ pins.title }}
+    </div>
     <FooterBar/>
     
   </v-container>
@@ -31,14 +34,14 @@ import axios from "axios";
                     url: 'http://127.0.0.1:5000/api/pins',
                     method: "GET",
                     data: {
-                        bio: this.title,
+                        title: this.title,
                         summary: this.summary,
                         createdAt: this.createdAt,
                         photo: this.photo,
                         resource: this.resource,
                     }
                 }).then((response)=>{
-                    console.log(response)
+                    console.log(response.data)
                     this.pins = response.data;
                 }).catch((error)=>{
                     console.log(error);
