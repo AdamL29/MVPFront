@@ -115,7 +115,7 @@ export default {
         this.clickMarker();
         this.$nextTick(() => {
             this.map.ANY_LEAFLET_MAP_METHOD();
-        // this.$on
+        // 
         });
     },
     }
