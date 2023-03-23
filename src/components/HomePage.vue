@@ -31,7 +31,7 @@ import axios from "axios";
       methods: {
             getPins(){
                 axios.request({
-                    url: 'http://127.0.0.1:5000/api/pins',
+                    url: this.apiUrl+'/pins',
                     method: "GET",
                     data: {
                         title: this.title,

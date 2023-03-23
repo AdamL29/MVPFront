@@ -29,10 +29,8 @@ import router from '@/router';
     },
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
-                // Am I looking for Key or Token?
+                apiUrl: process.env.VUE_APP_API_URL,
                 token: "user_token",
-                // apiUrl: process.env.VUE_APP_API_URL,
                 userEmail: "",
                 password: "",
             }
@@ -40,7 +38,7 @@ import router from '@/router';
         methods: {
             signIn(){
                 axios.request({
-                    url: 'https://seeknpeek.adamdom.ca/sign-in',
+                    url: this.apiUrl+'/sign-in',
                     method: "POST",
                     headers: {
                         "x-api-key": this.token,

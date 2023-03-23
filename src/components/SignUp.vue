@@ -49,6 +49,7 @@ import router from '@/router';
     },
         data() {
             return {
+                apiUrl: process.env.VUE_APP_API_URL,
                 token: "",
                 userName: "",
                 password: "",
@@ -62,7 +63,7 @@ import router from '@/router';
         methods: {
             signUpCall(){
                 axios.request({
-                    url: 'https://seeknpeek.adamdom.ca/sign-up',
+                    url: this.apiUrl+'/sign-up',
                     method: "POST",
                     headers: {
                         "token": this.token,
